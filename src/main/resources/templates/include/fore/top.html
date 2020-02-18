@@ -9,13 +9,13 @@
 
     <span>喵，欢迎来天猫</span>
 
-    <span th:if="${null!=session.user}">
+    <span th:if="${null!=session.user&&session.user.sign==0}">
 		<a href="login" th:text="${session.user.name}"></a>
 		<a href="forelogout" >退出</a>
 	</span>
 
 
-    <span th:if="${null==session.user}">
+    <span th:if="${null==session.user||session.user.sign==2||session.user.sign==1}">
 		<a href="login">请登录</a>
 		<a href="register">免费注册</a>
 	</span>

@@ -1,9 +1,7 @@
 package com.lizhifeng.tmall.config;
 
-import com.lizhifeng.tmall.interceptor.AdminInterceptor;
 import com.lizhifeng.tmall.interceptor.LoginInterceptor;
 import com.lizhifeng.tmall.interceptor.OtherInterceptor;
-import com.lizhifeng.tmall.interceptor.SuperInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -25,23 +23,23 @@ class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     public LoginInterceptor getLoginIntercepter() {
         return new LoginInterceptor();
     }
-    @Bean
-    public AdminInterceptor getAdminInterceptor() {
-        return new AdminInterceptor();
-    }
-
-    @Bean
-    public SuperInterceptor getSuperInterceptor(){
-        return new SuperInterceptor();
-    }
+//    @Bean
+//    public AdminInterceptor getAdminInterceptor() {
+//        return new AdminInterceptor();
+//    }
+//
+//    @Bean
+//    public SuperInterceptor getSuperInterceptor(){
+//        return new SuperInterceptor();
+//    }
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(getOtherIntercepter())
                 .addPathPatterns("/**");
         registry.addInterceptor(getLoginIntercepter())
                 .addPathPatterns("/**");
-        registry.addInterceptor(getAdminInterceptor()).addPathPatterns("/**");
-        registry.addInterceptor(getSuperInterceptor()).addPathPatterns("/**");
+//        registry.addInterceptor(getAdminInterceptor()).addPathPatterns("/**");
+//        registry.addInterceptor(getSuperInterceptor()).addPathPatterns("/**");
     }
 }
 

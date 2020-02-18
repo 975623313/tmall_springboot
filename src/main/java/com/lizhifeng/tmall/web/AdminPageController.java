@@ -23,15 +23,13 @@ public class AdminPageController {
 
 
 
-    @GetMapping(value="/superedit")
-    public String editAdmin(){
 
+    @GetMapping(value="/super_AdminEditPage")
+    public String editAdmin(){
         return "admin/editAdmin";
 
     }
-
-
-    @RequestMapping("/registerAdminPage")
+    @RequestMapping("/super_AddAdminPage")
     public String registerAdminPage(){
         return "admin/addAdmin";
     }
@@ -48,11 +46,11 @@ public class AdminPageController {
         return "admin/erro";
     }
 
-    @RequestMapping(value = "super_login")
+    @RequestMapping(value = "super_loginPage")
     public String superLoginPage(){
         return "admin/superLogin";
     }
-    @RequestMapping(value = "superIndex")
+    @RequestMapping(value = "super_IndexPage")
     public String superIndexPage(){
         return "admin/superIndex";
     }
@@ -126,7 +124,13 @@ public class AdminPageController {
 
     }
 
-
+    @RequestMapping("/super_logout")
+    public String superLogout( ) {
+        Subject subject = SecurityUtils.getSubject();
+        if(subject.isAuthenticated())
+            subject.logout();
+        return "admin/superLogin";
+    }
 
 
 }

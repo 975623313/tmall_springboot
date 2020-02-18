@@ -6,6 +6,7 @@ import com.lizhifeng.tmall.util.Page4Navigator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +30,7 @@ public class SuperService {
 
         Page pageFromJPA =adminDAO.findAll(pageable);
 
-        System.out.println("66222"+pageFromJPA.getContent());
+
         return new Page4Navigator<>(pageFromJPA,navigatePages);
     }
 
@@ -53,7 +54,7 @@ public class SuperService {
         return adminDAO.getOne(id);
     }
 
-//    @CacheEvict(allEntries=true)
+    @CacheEvict(allEntries=true)
     public void update(Admin bean) {
 
         String password = bean.getAdminpwd();

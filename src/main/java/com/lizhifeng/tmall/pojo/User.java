@@ -21,9 +21,22 @@ public class User {
     private String password;
     private String name;
     private String salt;
-
+    /*
+    0是普通用户
+1是后台管理用户
+2是超级用户
+     */
+    private int sign;
     @Transient
     private String anonymousName;
+
+    public int getSign() {
+        return sign;
+    }
+
+    public void setSign(int sign) {
+        this.sign = sign;
+    }
 
     public int getId() {
         return id;
@@ -77,4 +90,15 @@ public class User {
         this.anonymousName = anonymousName;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", salt='" + salt + '\'' +
+                ", sign=" + sign +
+                ", anonymousName='" + anonymousName + '\'' +
+                '}';
+    }
 }

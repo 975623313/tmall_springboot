@@ -31,6 +31,7 @@ public class SuperInterceptor implements HandlerInterceptor {
                 "editAdminsuper",
                 "updateAdmin",
                 "superIndex",
+                "super_logout",
 
 
         };

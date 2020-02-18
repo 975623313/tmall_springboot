@@ -10,7 +10,7 @@
 <script>
     $(function(){
         var data4Vue = {
-            uri: 'editAdminsuper',
+            uri: 'super_GetEditAdmin',
             listURL:'superedit',
             bean: '',
 
@@ -44,11 +44,11 @@
                 update:function () {
                     if(!checkEmpty(this.bean.name, "属性名称"))
                         return;
-                    var url = "updateAdmin";
+                    var url = "super_updateAdmin";
 
                     axios.put(url,vue.bean).then(function(response){
                         alert("修改成功")
-                        location.href="superIndex"
+                        location.href="super_IndexPage"
                     });
                 }
             }

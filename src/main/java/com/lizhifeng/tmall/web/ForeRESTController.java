@@ -58,15 +58,17 @@ public class ForeRESTController {
     }
     @PostMapping("/foreregister")
     public Object register(@RequestBody User user) {
+        System.out.println("foreregister----"+user);
         String name =  user.getName();
         String password = user.getPassword();
         name = HtmlUtils.htmlEscape(name);
         user.setName(name);
 
         boolean exist = false;
-        if (userService.isExist(name)&&superService.isExistAdmin(name)){
+        if (userService.isExist(name)){
             exist=true;
         }
+        System.out.println("-----exist---"+exist);
         if(exist){
             String message ="用户名已经被使用,不能使用";
             return Result.fail(message);
@@ -88,6 +90,7 @@ public class ForeRESTController {
 
     @PostMapping("/forelogin")
     public Object login(@RequestBody User userParam, HttpSession session) {
+//        System.out.println("------------------------"+userParam);
         String name =  userParam.getName();
         name = HtmlUtils.htmlEscape(name);
 
@@ -96,9 +99,17 @@ public class ForeRESTController {
         try {
             subject.login(token);
             User user = userService.getByName(name);
+            boolean flag=userParam.getSign()==user.getSign();
+            if (flag){
 //	    	subject.getSession().setAttribute("user", user);
             session.setAttribute("user", user);
             return Result.success();
+            }
+            else {
+                String message ="账号密码错误";
+                return Result.fail(message);
+
+            }
         } catch (AuthenticationException e) {
             String message ="账号密码错误";
             return Result.fail(message);
